@@ -15,7 +15,7 @@
 }
 
 .search-container {
-  display: flex;
+  display: none;
   align-items: center;
   width: 100%;
   max-width: 320px;
@@ -76,5 +76,8 @@
 @media (min-width: 640px) {
   .search-container {
     display: flex;
+  }
+  .drawer-search {
+    display: none;
   }
 }
