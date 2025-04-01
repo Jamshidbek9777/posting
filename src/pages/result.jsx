@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Download } from "lucide-react";
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
+import "../styles/result.css";
 
 const ResultPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,49 +28,43 @@ const ResultPage = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen text-white flex flex-col items-center p-4">
-      {/* Profile Info */}
-      <div className="flex flex-col items-center mb-6">
+    <div className="result-container">
+      <div className="result-profile">
         <img
           src="/img/image1.jpeg"
           alt="Profile"
-          className="w-20 h-20 rounded-full object-cover border-2 border-gray-600"
+          className="result-profile-image"
         />
-        <h2 className="text-xl font-semibold mt-2">@username</h2>
-        <p className="text-gray-400">8 POSTS</p>
+        <h2 className="result-username">@username</h2>
+        <p className="result-post-count">8 POSTS</p>
       </div>
 
-      {/* Image Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full max-w-5xl">
+      <div className="result-grid">
         {images.map((img, index) => (
-          <div key={index} className="relative">
+          <div key={index} className="result-grid-item">
             <a href="/detail">
               <img
                 src={img}
                 alt={`Post ${index + 1}`}
-                className="w-full h-64 object-cover rounded-lg"
+                className="result-grid-image"
               />
             </a>
             <button
               onClick={() => openModal(img)}
-              className="absolute bottom-2 right-2 bg-purple-600 p-2 rounded-full"
+              className="result-download-button"
             >
-              <Download />
+              <span class="material-icons-round">save_alt</span>
             </button>
           </div>
         ))}
       </div>
 
       <Modal open={isModalOpen} onCancel={closeModal} footer={null} centered>
-        <div className="flex flex-col gap-4 items-center mt-4">
-          <button className="bg-purple-600 px-6 py-2 rounded-lg text-white text-lg">
-            Download
-          </button>
-          <p className="text-lg">Video Without Watermark</p>
-          <button className="bg-purple-600 px-6 py-2 rounded-lg text-white text-lg">
-            Download
-          </button>
-          <p className="text-lg">Only Sound</p>
+        <div className="result-modal-content">
+          <button className="result-modal-button">Download</button>
+          <p className="result-modal-text">Video Without Watermark</p>
+          <button className="result-modal-button">Download</button>
+          <p className="result-modal-text">Only Sound</p>
         </div>
       </Modal>
     </div>
